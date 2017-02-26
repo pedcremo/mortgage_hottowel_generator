@@ -7,9 +7,9 @@
       "LANGUAGE": "LANG",
       "SIGN_IN": "Sign in",
       "DASHBOARD": "<i class='fa fa-dashboard'></i>Home",
-      "CONTACT": "<i class='fa fa-envelope-o'></i><span class='hidden-xs hidden-sm hidden-md'>Contact</span>",
-      "PROFILE": "<i class='fa fa-lock'></i> <span class='hidden-xs hidden-sm hidden-md'>Profile</span>",
-      "NEW_MORTGAGE": "<i class='fa fa-file'></i><span class='hidden-xs hidden-sm hidden-md'>New Mortgage</span>",
+      "CONTACT": "<i class='fa fa-envelope-o'></i><span class='hidden-sm hidden-md'>Contact</span>",
+      "PROFILE": "<i class='fa fa-lock'></i> <span class='hidden-sm hidden-md'>Profile</span>",
+      "NEW_MORTGAGE": "<i class='fa fa-file'></i><span class='hidden-sm hidden-md'>New Mortgage</span>",
       "USER": "User",
       "WELCOME": "Welcome",
       "LOGOUT": "Logout"

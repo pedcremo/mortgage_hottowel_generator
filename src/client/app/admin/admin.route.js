@@ -21,13 +21,11 @@
           controller: 'AdminController',
           controllerAs: 'vm',
           title: 'PROFILE',
-          settings: {
+          /*settings: {
             nav: 3,
-            //content: '<i class="fa fa-lock"></i> Admin'
-          },
+          },*/
 
           resolve:{
-            //loggedin: authservice.checkLoggedin
             loggedin: routerHelper.checkLoggedin
           }
         }

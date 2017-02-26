@@ -64,7 +64,7 @@ $("body").vegas({
             </a>
         </li> 
         <!-- User auth info -->
-        <li class="nav-item" id="userAuthInfo" ng-show="$root.authUser">            
+        <li class="nav-item" id="userAuthInfo" ng-show="$root.authUser" ui-sref="admin">            
             <a><img src="{{$root.authUser.photos[0].value}}" /> {{'WELCOME' | translate}}  {{ $root.authUser.displayName}}</a>
         </li>
 
@@ -82,7 +82,7 @@ $("body").vegas({
           </ul> --> 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <span class="hidden-xs hidden-sm hidden-md">{{'LANGUAGE'|translate}}</span> <span class="glyphicon glyphicon-menu-down"></span>
+           <span class="hidden-sm hidden-md">{{'LANGUAGE'|translate}}</span> <span class="glyphicon glyphicon-menu-down"></span>
            
         </a>
         <div class="dropdown-menu">

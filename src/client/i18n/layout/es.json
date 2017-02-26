@@ -7,9 +7,9 @@
       "LANGUAGE": "LANG",
       "SIGN_IN": "Entrar",
       "DASHBOARD": "<i class='fa fa-dashboard'></i>&nbsp;Inico",
-      "CONTACT": "<i class='fa fa-envelope-o'></i>&nbsp;<span class='hidden-xs hidden-sm hidden-md'>Contacto</span>",
-      "PROFILE": "<i class='fa fa-lock'> </i>&nbsp;<span class='hidden-xs hidden-sm hidden-md'>Perfil</span>",
-      "NEW_MORTGAGE": "<i class='fa fa-file'></i>&nbsp;<span class='hidden-xs hidden-sm hidden-md'>Nueva hipoteca</span>",
+      "CONTACT": "<i class='fa fa-envelope-o'></i>&nbsp;<span class='hidden-sm hidden-md'>Contacto</span>",
+      "PROFILE": "<i class='fa fa-lock'> </i>&nbsp;<span class='hidden-sm hidden-md'>Perfil</span>",
+      "NEW_MORTGAGE": "<i class='fa fa-file'></i>&nbsp;<span class='hidden-sm hidden-md'>Nueva hipoteca</span>",
       "USER": "Usuario",
       "WELCOME": "Bienvenido",
       "LOGOUT": "Salir"
