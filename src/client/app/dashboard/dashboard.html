@@ -49,7 +49,7 @@
                  </thead>
                  <tbody>
                    <tr ng-repeat="hipo in vm.mortgagesList" >
-                     <td><a ui-sref="hipotecaEdit({idHipoteca: hipo.$id})">{{$index+1}}</a></td>                     
+                     <td><a ui-sref="hipotecaEdit({idHipoteca: hipo.$id})">{{$index+1}} <i class="fa fa-pencil" aria-hidden="true"></i></a></td>                     
                      <td>{{$root.authUser.displayName}}</td>
                      <td>{{hipo.dadesEconomiques.capital|currency:'€'}}</td>
                      <td>{{hipo.interesAplicat}}</td>

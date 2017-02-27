@@ -43,7 +43,6 @@ function HipotecaController($injector,$rootScope,$firebaseArray,$q,$stateParams,
   vm.calcularHipoteca = calcularHipoteca;
   vm.resetValues = resetValues;
 
-  getEuribor(new Date());
   //vm.saveMortgage = saveMortgage;
   vm.submitAndSaveHipoteca = submitAndSaveHipoteca;
 
@@ -61,17 +60,22 @@ function HipotecaController($injector,$rootScope,$firebaseArray,$q,$stateParams,
           var ref = firebase.database().ref().child('hipotecas/' + $rootScope.authUser.id);
           vm.hipotecas = $firebaseArray(ref);
 
-          if ($stateParams.idHipoteca) {
-            //UPDATE EXISTING MORTGAGE
+          if ($stateParams.idHipoteca) {//UPDATE EXISTING MORTGAGE
             //promises=[getMortgagesFB($stateParams.idHipoteca)];
             vm.hipotecas.$loaded()
                       .then(function(hipotecas) {
                         vm.hipoteca = hipotecas.$getRecord($stateParams.idHipoteca); // true
+                        if (vm.hipoteca.dataConstitucioHipoteca) {
+                          vm.hipoteca.dataConstitucioHipoteca =
+                              new Date(vm.hipoteca.dataConstitucioHipoteca);
+                        }
                         hipotecaState = 'UPDATE';
                       })
                       .catch(function(error) {
                         console.log('Error:', error);
                       });
+          }else { //NEW
+            getEuribor(new Date());
           }
         }
       });
@@ -131,8 +135,12 @@ function HipotecaController($injector,$rootScope,$firebaseArray,$q,$stateParams,
 
   function calculateAmortizationPlan() {
     vm.hipoteca.plaAmortizatcio = [];
-    var liniaAmortitzacio = {'numPago':0,'saldoInicial':0,'quotaMensual':0,'aportacioParcial':0,'capital':0,
-                            'interes':0,'saldoFinal':0,'interesAcumulat':0};
+    var liniaAmortitzacio = {'numPago':0,'saldoInicial':0,'quotaMensual':0,'aportacioParcial':0,
+                            'capital':0,  'interes':0,'saldoFinal':0,'interesAcumulat':0};
+    var numPagos = vm.hipoteca.dadesEconomiques.terminiAnys * 12;
+    for (var i = 0;i < numPagos;i++) {
+      vm.hipoteca.plaAmortizatcio[i].numPago = i + 1;
+    }
   }
 
   function submitAndSaveHipoteca() {
@@ -142,6 +150,9 @@ function HipotecaController($injector,$rootScope,$firebaseArray,$q,$stateParams,
       });
       return false;
     }else {
+      if (vm.hipoteca.dataConstitucioHipoteca) {
+        vm.hipoteca.dataConstitucioHipoteca = vm.hipoteca.dataConstitucioHipoteca.getTime();
+      }
       if (hipotecaState === 'NEW') {
         vm.hipotecas.$add(vm.hipoteca);
       }else {
@@ -156,7 +167,9 @@ function HipotecaController($injector,$rootScope,$firebaseArray,$q,$stateParams,
   $scope.$watch(
     'vm.hipoteca.dataConstitucioHipoteca',
     function(newValue,oldValue) {
-      getEuribor(newValue);
+      if (newValue && newValue !== oldValue) {
+        getEuribor(newValue);
+      }
     }
   );
 
@@ -171,6 +184,9 @@ function HipotecaController($injector,$rootScope,$firebaseArray,$q,$stateParams,
                                vm.hipoteca.dadesEconomiques.diferencial) ||
                                vm.hipoteca.dadesEconomiques.interesFixe)) {
                        vm.calcularHipoteca();
+                       if (vm.hipoteca.dataConstitucioHipoteca) {
+                         vm.calculateAmortizationPlan();
+                       }
                      }else {
                        vm.hipoteca.quotaMensual = undefined;
                        vm.hipoteca.interesAplicat = undefined;
