@@ -42,6 +42,17 @@ router.get('/auth/facebook/callback',
     console.log('Facebook login ' + JSON.stringify(req.user));
     res.redirect('/');
   });
+
+router.get('/loginGoogle',
+   passport.authenticate('google', { scope: ['profile'] }));//passport.authenticate('google'));
+
+router.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    console.log('Google login ' + JSON.stringify(req.user));
+    res.redirect('/');
+  });
+
 // route to log out
 router.get('/logout', function(req, res) {
   req.logOut();

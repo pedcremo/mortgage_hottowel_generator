@@ -2,6 +2,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+
 //==================================================================
 // Define the strategy to be used by PassportJS
 passport.use(new LocalStrategy(
@@ -17,7 +19,6 @@ passport.use(new LocalStrategy(
 passport.use(new TwitterStrategy({
     consumerKey: 'O7irwQHhR39bk5oWuYK7KgBK5',
     consumerSecret: 'brTcGHZI8SQPz1U08HAm5VeSnjatuASLF6EyD1hdpkmlMvk2Me',
-    //callbackURL: 'http://127.0.0.1:' + process.env.PORT + '/api/auth/twitter/callback'
     callbackURL: '/api/auth/twitter/callback'
   },
   function(token, tokenSecret, profile, cb) {
@@ -28,7 +29,6 @@ passport.use(new TwitterStrategy({
 passport.use(new FacebookStrategy({
     clientID: '408509946157515',
     clientSecret: 'fbb3f995d1d03972cf56f6a825b395b0',
-    //callbackURL: 'http://127.0.0.1:' + process.env.PORT + '/api/auth/facebook/callback',
     callbackURL: '/api/auth/facebook/callback',
     profileFields: ['id', 'displayName', 'name', 'gender','photos']
   },
@@ -37,6 +37,19 @@ passport.use(new FacebookStrategy({
       return cb(err, user);
     });*/
     return cb(null, profile);
+  }
+));
+
+passport.use(new GoogleStrategy({
+    clientID: '978656105531-8oovnul0pvkjff2covvv2n4s5rc9iktf.apps.googleusercontent.com',
+    clientSecret: '9gN5wl3pvOcXUrwNUDJH1vo6',
+    callbackURL: '/api/auth/google/callback'
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    console.log('PROFILE GOOGLE ' + profile.id)
+    //User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    return cb(null, profile);
+    //});
   }
 ));
 
