@@ -1,12 +1,19 @@
 # mortgageCalculator
 
-LIVE DEMO: https://mortgage.bocairent.net
+LIVE DEMO: https://mortgage.bocairent.net  (Azure server with ubuntu 16.04 server)
 
-ADDS
--Auth infrastructure
--i18n
--contact section
--remove sidebar. Main menu on header
+This project has been forked from Hottowel Angular. A John Papa reference project used to explain his styleguide for programming in angularjs
+versions 1.X.
+
+We have used this project in high school IES L'Estació as a mandatory base to be used by all teams involved in a final web development project
+
+Over the original John Papa styleguide reference application we have added some improvements:
+
+- Authentication infrastructure
+- i18n
+- Change look and feel
+- Automatic deployment on server 
+- Node + express executed over https with valid certificates generated with letsencrypt
 
 **Generated from HotTowel Angular**
 
@@ -271,9 +278,6 @@ The `blocks.router` module contains a routing helper module that assists in addi
     --type=pre
     --ver=1.2.3 // specific version
 
-## License
-
-MIT
 
 ## Deploy app in azure cloud platform
 
@@ -293,6 +297,7 @@ git remote add azure pedcremo@mortgage.westeurope.cloudapp.azure.com:mortgage.gi
 
 Included in hooks (post_update)
 
+```
 #!/bin/bash
 sudo forever stopall
 unset 'GIT_DIR'
@@ -302,6 +307,8 @@ exec git update-server-info
 Per poder executar forever com a sudo sense q demane pass he editat /etc/sudoers i afegir. Això és pq si intente llançar
 un server express per baix del port 1024 necessite ser root
 user ALL=(ALL:ALL) NOPASSWD:/usr/local/bin/forever
+```
+
 
 https://letsencrypt.org/
 sudo apt-get install letsencrypt
@@ -313,3 +320,7 @@ letsencrypt certonly --webroot -w . -d mortgage.bocairent.net
 
 create your own certificate in project root folder
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt
+
+## License
+
+MIT
