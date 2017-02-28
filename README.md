@@ -1,6 +1,10 @@
 # mortgageCalculator
+In https://mortgage.bocairent.net (Azure server with ubuntu 16.04 server) we have deployed a live demo that is using this styleguide as a 
+base.   
 
-LIVE DEMO: https://mortgage.bocairent.net  (Azure server with ubuntu 16.04 server)
+This is a base app that follows John Papa styleguide https://github.com/johnpapa/angular-styleguide/tree/master/a1 and is main aim is to serve
+as a base to deploy a well structured angularjs app in the client side. It is a kind of scaffolding or reference model in order to help architect
+pupils apps automating with gulp tasks multiple routinary development processes. 
 
 This project has been forked from Hottowel Angular. A John Papa reference project used to explain his styleguide for programming in angularjs
 versions 1.X.
