@@ -1,4 +1,5 @@
-# mortgageCalculator
+# Improved John Papa styleguide 1.x reference app
+
 In https://mortgage.bocairent.net (Azure server with ubuntu 16.04 server) we have deployed a live demo that is using this styleguide as a 
 base.   
 
